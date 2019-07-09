@@ -1,0 +1,61 @@
+{
+  "name": "MyLittleKanban",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm-run-all test:*",
+    "test:html": "nu-html-checker index.html",
+    "init-project": "npm install && npm-run-all init:*",
+    "init:mkdirp": "npm install mkdirp",
+    "init:dirs": "mkdirp sass/components sass/pages sass/sections css vendor images js fonts docs",
+    "init:files": "touch index.html styleguide.html sass/style.scss sass/_layout.scss sass/_mixins.scss sass/_normalize.scss sass/_variables.scss js/script.js",
+    "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -o .gitignore",
+    "build": "npm-run-all build:* test",
+    "build:clean": "rimraf css/*.css",
+    "build:sass": "node-sass --output-style compact -o css sass",
+    "build:autoprefixer": "autoprefixer-cli  css/style.css",
+    "build-dev:sass": "node-sass --output-style expanded --source-map true -o css sass",
+    "build-prod": "npm-run-all build-prod:*",
+    "build-prod:erase-old-docs": "rm -r docs",
+    "build-prod:create-new-docs": "mkdir docs",
+    "build-prod:sass": "node-sass --output-style compact -o docs/css sass/style.scss",
+    "build-prod:autoprefixer": "autoprefixer-cli docs/css/style.css",
+    "build-prod:copy-files": "cp *.html docs && rm docs/styleguide.html",
+    "build-prod:copy-dirs": "cp -r images docs && cp -r js docs && cp -r fonts docs",
+    "build-prod:test-html": "nu-html-checker docs/*.html",
+    "watch": "npm-run-all build -p watch:*",
+    "watch:sassprefixer": "npm-run-all -p watch-sass watch-autoprefixer",
+    "watch-sass": "onchange sass/**/*.scss -- node-sass --output-style expanded --source-map true -o css sass",
+    "watch-autoprefixer": "onchange css/style.css -- autoprefixer-cli -o css/style.css css/style.css",
+    "watch:browsersync": "browser-sync start --server --files sass/**/*.scss *.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agata-m/MyLittleKanban.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agata-m/MyLittleKanban/issues"
+  },
+  "homepage": "https://github.com/agata-m/MyLittleKanban#readme",
+  "devDependencies": {
+    "autoprefixer-cli": "^1.0.0",
+    "browser-sync": "^2.26.5",
+    "globstar": "^1.0.0",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "nu-html-checker": "^0.1.0",
+    "onchange": "^5.2.0"
+  },
+  "dependencies": {
+    "flickity": "^2.2.1",
+    "flickity-hash": "^1.0.3",
+    "jquery": "^3.4.1",
+    "mkdirp": "^0.5.1",
+    "mustache": "^3.0.1",
+    "rimraf": "^2.6.3"
+  }
+}

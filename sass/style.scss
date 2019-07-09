@@ -1,0 +1,143 @@
+body {
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+    background: url(https://images.pexels.com/photos/2130475/pexels-photo-2130475.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: lightgray;
+}
+
+#board {
+    padding: 10px 20px 20px 20px;
+    border: 2px solid rgb(0, 0, 38);
+    background: rgba(0, 0, 38, 0.7);
+    min-height: 100vh;
+    border-color: lightgrey;
+}
+
+
+// BUTTONS
+
+button {
+    padding: 5px 8px;
+    margin: 10px 0;
+    color: lighten(rgb(0, 0, 38), 10%);
+    background-color: transparent;
+    box-shadow: 0px 1px 4px rgb(0, 0, 38);
+    outline: none;
+    border: 2px solid rgb(0, 0, 38);
+    color: rgb(0, 0, 38);
+    font-size: 16px;
+
+    &:hover {
+        background-color: rgb(0, 0, 38);
+        color: white;
+        transition: .3s ease-in-out;
+        cursor: pointer;
+    }
+}
+
+.btn-delete {
+    border: none;
+    box-shadow: none;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    padding-right: 20px;
+
+    &:hover {
+        background-color: transparent;
+        color: rgb(0, 0, 38);
+    }
+}
+
+
+// BOARD + HEADING
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid lightgray;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+
+    h1 {
+        width: 80%;
+        display: flex;
+        align-items: center;
+    }
+
+    .create-column {
+        font-size: 18px;
+        width: 10%;
+        font-weight: bold;
+        box-shadow: 0px 1px 4px lightgrey;
+        border-color: lightgrey;
+        color: white;
+
+        @media(max-width: 900px) {
+            width: 20%;
+        }
+
+        &:hover {
+            color: rgb(0, 0, 38);
+            background-color: lightgray;
+        }
+    }
+}
+
+
+// COLUMNS
+
+.column-container {
+    display: flex;
+    color: rgb(0, 0, 38);
+
+    div {
+        min-height: 90vh;
+        width: 100%;
+        background-color: rgba(211, 211, 211, 0.8);
+        margin-right: 20px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+    
+    .column {
+        padding: 20px;
+        position: relative;
+        width: calc( 100% - 40px);
+        background-color: transparent;
+
+        .column-title {
+            padding-right: 20px;
+        }
+    }    
+}
+
+ul {
+    list-style-type: none;
+    min-height: 75vh;
+
+    li {
+        display: flex;
+    }
+
+    .card {
+        padding: 30px 20px 10px 10px;
+        box-shadow: 0px 1px 4px lightgrey;
+        background-color: lightgray;
+        margin-top: 20px;
+        position: relative;
+        min-height: 0;
+
+        .btn-delete {
+            top: 10px;
+            right: 10px;
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
